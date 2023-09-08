@@ -36,7 +36,7 @@ select name, sum(conversions) / sum(cost) as 'Cost per Conversion ($/conversion)
 from marketing_data join campaign_info 
 on marketing_data.campaign_id = campaign_info.id 
 group by campaign_id
-order by conversions / cost 
+order by sum(conversions) / sum(cost)
 -- ANSWER: I believe Campaign5 was the most efficient because it resulted in the lowest dollar cost per conversion: $1.91 per conversion. 
 
 -- Bonus Question
@@ -45,4 +45,4 @@ select DATENAME(date, getdate()), sum(conversions) / sum(cost) as 'Cost per Conv
 from marketing_data join campaign_info 
 on marketing_data.campaign_id = campaign_info.id 
 group by DATENAME(date, getdate())
-order by conversions / cost 
+order by sum(conversions) / sum(cost)
